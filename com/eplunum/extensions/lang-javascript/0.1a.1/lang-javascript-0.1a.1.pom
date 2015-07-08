@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.eplunum.extensions</groupId>
+    <artifactId>extensions</artifactId>
+    <version>0.1a.1</version>
+  </parent>
+  <artifactId>lang-javascript</artifactId>
+  <name>JavaScript Extension</name>
+
+  <properties>
+    <rootDir>${basedir}/..</rootDir>
+  </properties>
+  
+  <build>
+    <resources>
+      <resource>
+        <directory>src/test/java</directory>
+        <includes>
+          <include>**/*.js</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.eplunum.extensions</groupId>
+      <artifactId>eplunum-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.eplunum.model</groupId>
+      <artifactId>application-jaxb-impl</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mozilla</groupId>
+      <artifactId>rhino</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.eplunum.extensions</groupId>
+      <artifactId>lang-common</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+</project>

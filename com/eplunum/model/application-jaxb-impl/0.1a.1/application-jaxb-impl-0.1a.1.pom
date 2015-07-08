@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.eplunum.model</groupId>
+    <artifactId>model</artifactId>
+    <version>0.1a.1</version>
+  </parent>
+  <artifactId>application-jaxb-impl</artifactId>
+  <name>Application JAXB Implementation</name>
+  <description>
+    A concrete implementation of the Application API that uses JAXB serialization
+  </description>
+
+  <properties>
+    <rootDir>${basedir}/..</rootDir>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.eplunum.model</groupId>
+      <artifactId>application-api</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>schemagen</id>
+            <goals>
+              <goal>schemagen</goal>
+            </goals>
+            <!-- automatically binds to "generate-resources" phase -->
+          </execution>
+        </executions>
+        <configuration>
+          <transformSchemas>
+            <transformSchema>
+              <uri>http://www.eplunum.com/schema/application/1.0</uri>
+              <toFile>eplunum-application-1.0.xsd</toFile>
+            </transformSchema>
+          </transformSchemas>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-resource</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>add-resource</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>target/generated-resources/schemagen</directory>
+                  <includes>
+                    <include>*.xsd</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
